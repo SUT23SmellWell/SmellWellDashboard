@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class GoogleSheetService {
-  private apiUrl = 'PUT URL HERE XD';
+  private apiUrl = 'https://localhost:7050/KWRANKING';
 
   constructor(private http: HttpClient) { }
 

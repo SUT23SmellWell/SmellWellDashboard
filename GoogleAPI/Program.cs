@@ -13,7 +13,16 @@ namespace GoogleAPI
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
-
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAllOrigins",
+                    builder =>
+                    {
+                        builder.WithOrigins("http://localhost:4200")
+                               .AllowAnyHeader()
+                               .AllowAnyMethod();
+                    });
+            });
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -27,7 +36,7 @@ namespace GoogleAPI
 
             app.UseAuthorization();
 
-
+            app.UseCors("AllowAllOrigins");
             app.MapControllers();
             app.MapGet("/KWRANKING", GetDataAsync);
             app.Run();
@@ -38,7 +47,7 @@ namespace GoogleAPI
 
         private static async Task<IResult> GetDataAsync()
         {
-            var filePath = "C:\\Users\\jonat\\Downloads\\kwresearchstest2.csv"; // Update the path to your CSV file
+            var filePath = "csvfiles/kwresearchstest2.csv"; // Update the path to your CSV file
             var csvData = await ReadCsvFileAsync(filePath);
 
             if (csvData.Length < 7)
