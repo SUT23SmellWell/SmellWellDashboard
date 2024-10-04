@@ -14,7 +14,7 @@ export class SheetsComponent implements OnInit {
   constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
-    this.http.get('https://localhost:7050/KWRANKING')
+    this.http.get('https://localhost:7050/KWRANKING') // Replace this URL with your own
       .subscribe({
         next: (data) => {
           this.data = data; // Process your data here
