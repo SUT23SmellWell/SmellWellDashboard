@@ -230,6 +230,7 @@
 .div-10 {
   align-self: stretch;
   display: flex;
+  flex-direction: row;
   margin-top: 76px;
   gap: 36px;
   color: rgba(150, 165, 184, 1);
@@ -263,6 +264,7 @@
 }
 .div-11 {
   display: flex;
+  flex-direction: column;
   width: 694px;
   max-width: 100%;
   gap: 20px;
@@ -279,6 +281,7 @@
 .div-12 {
   align-self: start;
   display: flex;
+  flex-direction: row;
   gap: 3px;
   white-space: nowrap;
 }

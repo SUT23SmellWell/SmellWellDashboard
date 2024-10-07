@@ -71,9 +71,10 @@
       </div>
     </div>
     <div class="rectangle"></div>
-    <div class="div-11">
-      <div>Shoe Smell</div>
-      <div>1</div>
+    <div class="div-11" *ngIf="data">
+      <div *ngFor="let item of data">
+        <div>{{ item.keyword }}</div>
+        <div>{{ item.rank }}</div>
       <div class="div-12">
         <img
           loading="lazy"
@@ -81,12 +82,12 @@
           class="img-4"
           alt="Rank icon"
         />
-        <div>1</div>
+        <div>{{ item.rank }}</div>
       </div>
       <div class="div-13">
-        <div>24599</div>
-        <div>3956</div>
-        <div>16%</div>
+        <div>{{ item.totalSearches }}</div>
+        <div>{{ item.clicksThisMonth }}</div>
+        <div>{{ item.cvr }}%</div>
       </div>
     </div>
     <div class="rectangle-2"></div>
