@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+
 import { KeywordSalesComponent } from './components/keyword-sales/keyword-sales.component';
 import { ImageDisplayComponent } from "./components/image-display/image-display.component";
 
@@ -8,7 +9,7 @@ import { ImageDisplayComponent } from "./components/image-display/image-display.
   standalone: true,
   imports: [RouterOutlet, KeywordSalesComponent, ImageDisplayComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent {
   title = 'SMFrontEndAng';
