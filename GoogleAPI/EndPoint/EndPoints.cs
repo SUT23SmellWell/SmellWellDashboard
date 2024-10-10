@@ -153,21 +153,21 @@ namespace GoogleSheetsAPI.EndPoint
 
             // Skapa en dictionary för att matcha månadsnamn och nummer till dess siffra
             var monthMapping = new Dictionary<string, int>
-    {
-        { "1", 1 }, { "january", 1 }, { "jan", 1 },
-        { "2", 2 }, { "february", 2 }, { "feb", 2 },
-        { "3", 3 }, { "march", 3 }, { "mar", 3 },
-        { "4", 4 }, { "april", 4 }, { "apr", 4 },
-        { "5", 5 }, { "may", 5 },
-        { "6", 6 }, { "june", 6 }, { "jun", 6 },
-        { "7", 7 }, { "july", 7 }, { "jul", 7 },
-        { "8", 8 }, { "august", 8 }, { "aug", 8 },
-        { "9", 9 }, { "september", 9 }, { "sep", 9 },
-        { "10", 10 }, { "october", 10 }, { "oct", 10 },
-        { "11", 11 }, { "november", 11 }, { "nov", 11 },
-        { "12", 12 }, { "december", 12 }, { "dec", 12 }
-    };
-
+            {
+                { "1", 1 }, { "january", 1 }, { "jan", 1 },
+                { "2", 2 }, { "february", 2 }, { "feb", 2 },
+                { "3", 3 }, { "march", 3 }, { "mar", 3 },
+                { "4", 4 }, { "april", 4 }, { "apr", 4 },
+                { "5", 5 }, { "may", 5 },
+                { "6", 6 }, { "june", 6 }, { "jun", 6 },
+                { "7", 7 }, { "july", 7 }, { "jul", 7 },
+                { "8", 8 }, { "august", 8 }, { "aug", 8 },
+                { "9", 9 }, { "september", 9 }, { "sep", 9 },
+                { "10", 10 }, { "october", 10 }, { "oct", 10 },
+                { "11", 11 }, { "november", 11 }, { "nov", 11 },
+                { "12", 12 }, { "december", 12 }, { "dec", 12 }
+             };
+    
             // Validera inmatningen
             if (!monthMapping.TryGetValue(normalizedMonth, out var monthNumber))
             {
