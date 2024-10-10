@@ -9,6 +9,7 @@ namespace GoogleSheetsAPI.EndPoint
             app.MapGet("/KWRANKING", async () => await GetDataAsync());
             app.MapGet("/SALESRANKING/{month}", async (string month) => await GetSalesDataByMonthAsync(month));
             app.MapGet("/DETAILEDSALES/{month}", async (string month) => await GetMonthlySalesDataAsync(month));
+
         }
 
         private static async Task<IResult> GetDataAsync()
