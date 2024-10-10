@@ -10,14 +10,25 @@ namespace GoogleSheetsAPI.EndPoint
             // Få instansen av ISalesDataExtractor via DI
             var extractor = app.Services.GetRequiredService<ISalesDataExtractor>();
 
-            app.MapGet("/KWRANKING", async () => await GetDataAsync(extractor));
+            app.MapGet("/KWRANKING", async (string option) => await GetDataAsync(extractor, option));
             app.MapGet("/SALESRANKING/{month}", async (string month) => await GetSalesDataByMonthAsync(extractor, month));
             app.MapGet("/DETAILEDSALES/{month}", async (string month) => await GetMonthlySalesDataAsync(extractor, month));
         }
 
-        private static async Task<IResult> GetDataAsync(ISalesDataExtractor extractor)
+        private static async Task<IResult> GetDataAsync(ISalesDataExtractor extractor, string option)
         {
-            var filePath = "csvFiles/kwresearchstest2.csv";
+            option = string.IsNullOrEmpty(option) ? "1" : option.ToLower();
+            var filePath = option.ToLower() switch
+            {
+                "1" or "zebra" => "csvFiles/kwresearchstest2.csv",
+                "2" or "leopard" => "csvFiles/kwresearchstest3.csv",
+                _ => null // Om ingen match hittas
+            };
+
+            if (filePath == null)
+            {
+                return Results.BadRequest("Invalid option provided. Please use '1', 'zebra', '2', or 'leopard'.");
+            }
             var csvData = await CsvReaderService.ReadCsvFileAsync(filePath);
 
             if (csvData.Length < 7)
