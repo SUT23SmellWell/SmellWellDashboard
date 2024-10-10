@@ -1,4 +1,6 @@
-﻿namespace GoogleSheetsAPI.EndPoint
+﻿using System.Globalization;
+
+namespace GoogleSheetsAPI.EndPoint
 {
     public static class Endpoints
     {
@@ -6,6 +8,8 @@
         {
             app.MapGet("/KWRANKING", async () => await GetDataAsync());
             app.MapGet("/SALESRANKING/{month}", async (string month) => await GetSalesDataByMonthAsync(month));
+            app.MapGet("/DETAILEDSALES/{month}", async (string month) => await GetMonthlySalesDataAsync(month));
+
         }
 
         private static async Task<IResult> GetDataAsync()
@@ -140,6 +144,95 @@
                 TotalRefunds = totalRow[8].Replace("\"", "").Trim(),
                 Budget = totalRow[14].Replace("\"", "").Trim()
             };
+        }
+
+        private static async Task<IResult> GetMonthlySalesDataAsync(string monthInput)
+        {
+            // Normalisera inmatningen (ta bort mellanslag och gör små bokstäver)
+            var normalizedMonth = monthInput.Trim().ToLower();
+
+            // Skapa en dictionary för att matcha månadsnamn och nummer till dess siffra
+            var monthMapping = new Dictionary<string, int>
+            {
+                { "1", 1 }, { "january", 1 }, { "jan", 1 },
+                { "2", 2 }, { "february", 2 }, { "feb", 2 },
+                { "3", 3 }, { "march", 3 }, { "mar", 3 },
+                { "4", 4 }, { "april", 4 }, { "apr", 4 },
+                { "5", 5 }, { "may", 5 },
+                { "6", 6 }, { "june", 6 }, { "jun", 6 },
+                { "7", 7 }, { "july", 7 }, { "jul", 7 },
+                { "8", 8 }, { "august", 8 }, { "aug", 8 },
+                { "9", 9 }, { "september", 9 }, { "sep", 9 },
+                { "10", 10 }, { "october", 10 }, { "oct", 10 },
+                { "11", 11 }, { "november", 11 }, { "nov", 11 },
+                { "12", 12 }, { "december", 12 }, { "dec", 12 }
+             };
+    
+            // Validera inmatningen
+            if (!monthMapping.TryGetValue(normalizedMonth, out var monthNumber))
+            {
+                return Results.BadRequest("Invalid month provided.");
+            }
+
+            var filePath = "csvFiles/DashboardTotalsMonthly.csv";
+            var csvData = await ReadCsvFileAsync(filePath);
+
+            if (csvData.Length < 2)
+            {
+                return Results.BadRequest("CSV file does not contain enough data.");
+            }
+
+            var selectedData = ExtractMonthlySalesData(csvData, monthNumber);
+            return Results.Json(selectedData);
+        }
+        private static object ExtractMonthlySalesData(string[] csvData, int monthNumber)
+        {
+            var salesData = csvData
+                .Skip(1) // Skippa header-raden
+                .Select(row => row.Split(';')) // Använd semikolon som avgränsare
+                .Where(columns =>
+                {
+                    // Ta bort citattecken runt datumen och parsar dem
+                    var dateFromString = columns[0].Trim('"');
+                    var dateToString = columns[1].Trim('"');
+
+                    // Specificera formatet baserat på hur datumen ser ut i CSV-filen
+                    string dateFormat = "d/MM/yyyy";
+                    if (DateTime.TryParseExact(dateFromString, dateFormat, CultureInfo.InvariantCulture, DateTimeStyles.None, out var dateFrom) &&
+                        DateTime.TryParseExact(dateToString, dateFormat, CultureInfo.InvariantCulture, DateTimeStyles.None, out var dateTo))
+                    {
+                        // Skriver ut information om datumintervall
+                        Console.WriteLine($"DateFrom: {dateFrom}, DateTo: {dateTo}, MonthNumber: {monthNumber}");
+
+                        // Kontrollera om angiven månad ligger inom datointervallet
+                        var isWithinRange = dateFrom.Month <= monthNumber && dateTo.Month >= monthNumber;
+                        Console.WriteLine($"Row matches month: {isWithinRange}");
+
+                        return isWithinRange;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Date parsing failed for row.");
+                    }
+                    return false;
+                })
+                .Select((columns, index) => new
+                {
+                    //RowNumber = index + 2, // För att matcha radnumret korrekt (CSV-data börjar på rad 2)
+                    DateFrom = columns[0].Trim('"'),
+                    DateTo = columns[1].Trim('"'),
+                    OrganicSales = columns[2].Trim('"'),
+                    SponsoredSales = columns[3].Trim('"'),
+                    Orders = columns[10].Trim('"')
+                })
+                .ToList();
+
+            if (!salesData.Any())
+            {
+                return new { error = "No data found for the specified month." };
+            }
+
+            return salesData;
         }
     }
 }
