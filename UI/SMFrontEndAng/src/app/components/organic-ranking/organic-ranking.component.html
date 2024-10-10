@@ -15,17 +15,18 @@
       <div class="table-header">
         <span *ngFor="let header of headers">{{ header }}</span>
       </div>
-      <hr class="table-divider" />
-      <div class="table-row" *ngFor="let row of data">
-        <span>{{ row.keyword }}</span>
-        <span>{{ row.rank }}</span>
-        <span>{{ row.rankchange }}NA</span>
-        <span>{{ row.impressions }}</span>
-        <span>{{ row.clicks }}</span>
-        <span>{{ row.cvr }}</span>
-        <span>{{ row.totalsales }}</span>
+      <div class="table-body">
+        <div class="table-row" *ngFor="let row of data">
+          <hr class="table-divider" />
+          <span>{{ row.keyword }}</span>
+          <span>{{ row.rank }}</span>
+          <span>{{ row.rankchange }}NA</span>
+          <span>{{ row.impressions }}</span>
+          <span>{{ row.clicks }}</span>
+          <span>{{ row.cvr }}</span>
+          <span>{{ row.totalsales }}</span>
+        </div>
       </div>
-      <hr class="table-divider" />
     </div>
   </div>
 </section>
