@@ -15,7 +15,7 @@
         />
         <h1 class="page-title">{{ pageTitle }}</h1>
       </nav>
-      <section class="product-highlight" (click)="onProductClick()">
+      <section class="product-highlight">
         <img
           src="https://cdn.builder.io/api/v1/image/assets/TEMP/71f132d0b045be2824adf50c6d7d9e22e4ce3db046535a067394da4a639cbce4?apiKey=0b48fe8e354b4d2f9b80496aa2074bf7&"
           alt="Smellwell Active product"
@@ -25,11 +25,17 @@
           <h2 class="product-category">{{ productCategory }}</h2>
           <p class="product-name">{{ productName }}</p>
         </div>
-        <img
-          src="https://cdn.builder.io/api/v1/image/assets/TEMP/adca18e8dec097da9033b5ab95dd6bca433c2ddc61e84c588e1b374737c22485?apiKey=0b48fe8e354b4d2f9b80496aa2074bf7&"
-          alt="Decorative image"
-          class="decorative-image"
-        />
+        <button class="dropbtn" (click)="toggleDropdown()">
+          <img
+            src="https://cdn.builder.io/api/v1/image/assets/TEMP/adca18e8dec097da9033b5ab95dd6bca433c2ddc61e84c588e1b374737c22485?apiKey=0b48fe8e354b4d2f9b80496aa2074bf7&"
+            alt="Decorative image"
+            class="decorative-image"
+          />
+        </button>
+        <div id="myDropdown" class="dropdown-content" *ngIf="dropdownOpen">
+          <input type="text" placeholder="Search.." id="myInput" (keyup)="filterFunction()">
+          <a *ngFor="let product of filteredProducts" (click)="selectProduct(product)">{{ product.name }}</a>
+        </div>
       </section>
     </div>
   </div>

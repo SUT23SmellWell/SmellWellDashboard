@@ -13,15 +13,33 @@ import { CommonModule } from "@angular/common";
   styleUrls: ["./keyword-sales.component.css"],
 })
 export class KeywordSalesComponent implements OnInit {
-  pageTitle: string = "Keyword & Sales";
-  productCategory: string = "SMELLWELL ACTIVE";
-  productName: string = "Leopard";
+  pageTitle = 'Keyword Sales Dashboard';
+  productCategory = 'Category';
+  productName = 'Product Name';
+  dropdownOpen = false;
+  products = [
+    { name: 'Product 1', category: 'Category 1' },
+    { name: 'Product 2', category: 'Category 2' },
+    { name: 'Product 3', category: 'Category 3' }
+  ];
+  filteredProducts = [...this.products];
 
   constructor() {}
 
   ngOnInit(): void {}
 
-  onProductClick(): void {
-    console.log("Product clicked");
+  toggleDropdown(): void {
+    this.dropdownOpen = !this.dropdownOpen;
+  }
+
+  filterFunction(): void {
+    const input = (document.getElementById('myInput') as HTMLInputElement).value.toLowerCase();
+    this.filteredProducts = this.products.filter(product => product.name.toLowerCase().includes(input));
+  }
+
+  selectProduct(product: { name: string; category: string }): void {
+    this.productName = product.name;
+    this.productCategory = product.category;
+    this.dropdownOpen = false;
   }
 }
