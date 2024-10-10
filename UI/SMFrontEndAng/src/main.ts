@@ -4,7 +4,4 @@ import { builderDevTools } from "@builder.io/dev-tools/angular";
 import { AppComponent } from "./app/app.component";
 bootstrapApplication(AppComponent, appConfig)
     .catch((err) => console.error(err));
-
-builderDevTools().catch((err: Error) =>
-    console.error("Error starting dev tools:", err)
-  );
+builderDevTools().catch((err: Error) => console.error("Error starting dev tools:", err));
