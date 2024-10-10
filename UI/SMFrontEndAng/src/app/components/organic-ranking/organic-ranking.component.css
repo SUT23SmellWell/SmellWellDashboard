@@ -79,6 +79,8 @@
   display: flex;
   font: 400 14px/1 Poppins, sans-serif;
   gap: 20px;
+  padding: 2rem;
+  margin: 1rem;
   justify-content: space-between;
 }
 
