@@ -17,12 +17,12 @@ export class KeywordSalesComponent implements OnInit {
   pageTitle = 'Keyword Sales Dashboard';
   productCategory = 'Category';
   productName = 'Product Name';
-  productImageUrl = 'https://via.placeholder.com/150';
+  productImageUrl = '//src/app/assets/Active_Original_Black_Zebra0000_White (1) 5 (11).jpg';
   dropdownOpen = false;
   products = [
     { name: 'Black Zebra', category: 'Smellwell Active', imageUrl: '/src/app/assets/Active_Original_Black_Zebra0000_White (1) 5 (11).jpg' },
-    { name: 'Leopard', category: 'Smellwell Active', imageUrl: '/src/app/assets/Active_Original_Leo0000_White (1) 1.jpg' },
-    { name: 'Product Floral', category: 'Smellwell Active', imageUrl: '/src/app/assets/Active_Original_Fresh_Floral_Blue0000_White 1.jpg' },
+    { name: 'Leopard', category: 'Smellwell Active', imageUrl: '/assets/Active_Original_Leo0000_White (1) 1.jpg' },
+    { name: 'Product Floral', category: 'Smellwell Active', imageUrl: '/assets/Active_Original_Fresh_Floral_Blue0000_White 1.jpg' },
   ];
   filteredProducts = [...this.products];
 
@@ -39,9 +39,10 @@ export class KeywordSalesComponent implements OnInit {
     this.filteredProducts = this.products.filter(product => product.name.toLowerCase().includes(input));
   }
 
-  selectProduct(product: { name: string; category: string }): void {
+  selectProduct(product: { name: string; category: string; imageUrl: string }): void {
     this.productName = product.name;
     this.productCategory = product.category;
+    this.productImageUrl = product.imageUrl;
     this.dropdownOpen = false;
   }
 }
