@@ -17,11 +17,12 @@ export class KeywordSalesComponent implements OnInit {
   pageTitle = 'Keyword Sales Dashboard';
   productCategory = 'Category';
   productName = 'Product Name';
+  productImageUrl = 'https://via.placeholder.com/150';
   dropdownOpen = false;
   products = [
-    { name: 'Product 1', category: 'Category 1' },
-    { name: 'Product 2', category: 'Category 2' },
-    { name: 'Product 3', category: 'Category 3' }
+    { name: 'Black Zebra', category: 'Smellwell Active', imageUrl: '/src/app/assets/Active_Original_Black_Zebra0000_White (1) 5 (11).jpg' },
+    { name: 'Leopard', category: 'Smellwell Active', imageUrl: '/src/app/assets/Active_Original_Leo0000_White (1) 1.jpg' },
+    { name: 'Product Floral', category: 'Smellwell Active', imageUrl: '/src/app/assets/Active_Original_Fresh_Floral_Blue0000_White 1.jpg' },
   ];
   filteredProducts = [...this.products];
 
