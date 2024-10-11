@@ -79,11 +79,12 @@
   color: #000;
   cursor: pointer;
   transition: transform 0.3s ease;
+  position: relative; /* Nödvändig för att dropdown ska placeras rätt */
 }
 
-.product-highlight:hover {
+/* .product-highlight:hover {
   transform: scale(1.05);
-}
+} */
 
 .product-image {
   aspect-ratio: 1.06;
@@ -123,6 +124,32 @@
   margin-top: 10px;
   width: 100%;
 }
+.dropdown-content {
+  display: none; /* Dölj dropdownen som standard */
+  position: absolute; /* Gör att dropdownen kan placeras exakt under knappen */
+  background-color: #fff; /* Vit bakgrund för dropdownen */
+  min-width: 100%; /* Sätt bredden till 100% av föräldern */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Skugga för att ge djup */
+  z-index: 1; /* Se till att dropdownen visas ovanpå andra element */
+  top: 100%; /* Placera dropdownen direkt under knappen */
+  left: 0; /* Justera till vänster kant av föräldern */
+}
+
+.dropdown-content a {
+  color: black; /* Textfärg för länkar */
+  padding: 12px 16px; /* Inre marginaler för länkar */
+  text-decoration: none; /* Ta bort understrykning */
+  display: block; /* Gör länkar blockelement så att hela området är klickbart */
+}
+
+.dropdown-content a:hover {
+  background-color: #ddd; /* Ändra bakgrund när muspekaren är över en länk */
+}
+
+/* Visa dropdown-innehållet när dropdownOpen är true */
+.dropdown-content.show {
+  display: block; /* Visa dropdown-innehållet */
+}
 
 @media (max-width: 991px) {
   .header-content {
@@ -140,4 +167,5 @@
   .page-title {
     padding: 0 20px;
   }
+
 }
