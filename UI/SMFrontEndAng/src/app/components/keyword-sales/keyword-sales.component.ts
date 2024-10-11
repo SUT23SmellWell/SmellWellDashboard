@@ -4,11 +4,12 @@
 import { Component, OnInit } from "@angular/core";
 import { OrganicRankingComponent } from "../organic-ranking/organic-ranking.component";
 import { CommonModule } from "@angular/common";
+import { SalesOverviewComponent } from "../sales-overview/sales-overview.component";
 
 @Component({
   selector: "app-keyword-sales",
   standalone: true,
-  imports: [OrganicRankingComponent, CommonModule],
+  imports: [OrganicRankingComponent, CommonModule, SalesOverviewComponent],
   templateUrl: "./keyword-sales.component.html",
   styleUrls: ["./keyword-sales.component.css"],
 })

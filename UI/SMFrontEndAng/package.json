@@ -22,7 +22,7 @@
     "@angular/platform-server": "^18.2.0",
     "@angular/router": "^18.2.0",
     "@angular/ssr": "^18.2.7",
-    "@builder.io/dev-tools": "^1.1.14",
+    "@builder.io/dev-tools": "^1.1.20",
     "@builder.io/sdk-angular": "^0.2.17",
     "concurrently": "^9.0.1",
     "express": "^4.18.2",
