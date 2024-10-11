@@ -80,6 +80,8 @@
   cursor: pointer;
   transition: transform 0.3s ease;
   position: relative; /* Nödvändig för att dropdown ska placeras rätt */
+  width: 400px; /* Sätt en fast bredd */
+  align-items: center; /* Centrera innehållet vertikalt */
 }
 
 /* .product-highlight:hover {
@@ -97,7 +99,8 @@
 .product-info {
   display: flex;
   flex-direction: column;
-  margin: auto 0;
+  flex: 1; /* Gör att produktinformationen tar upp tillgängligt utrymme */
+  min-width: 0; /* Se till att inte växa utanför sin behållare */
 }
 
 .product-category {
@@ -105,9 +108,22 @@
 }
 
 .product-name {
-  align-self: center;
   margin-top: 6px;
   font: 700 18px Roboto, sans-serif;
+  white-space: nowrap; /* Förhindra texten från att brytas */
+  overflow: hidden; /* Dölj överflödig text */
+  text-overflow: ellipsis; /* Visa ellipsis om texten är för lång */
+}
+
+.dropbtn {
+  display: flex;
+  align-items: center; /* Centrera ikonen vertikalt i knappen */
+  justify-content: center; /* Centrera ikonen horisontellt i knappen */
+  width: 65px; /* Sätt en konstant bredd för dropbtn */
+  height: 65px; /* Sätt en konstant höjd för dropbtn */
+  background: transparent; /* Transparent bakgrund */
+  border: none; /* Ingen kant */
+  cursor: pointer; /* Muspekaren ändras till pekare */
 }
 
 .decorative-image {
@@ -124,6 +140,7 @@
   margin-top: 10px;
   width: 100%;
 }
+
 .dropdown-content {
   display: none; /* Dölj dropdownen som standard */
   position: absolute; /* Gör att dropdownen kan placeras exakt under knappen */
@@ -131,8 +148,9 @@
   min-width: 100%; /* Sätt bredden till 100% av föräldern */
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Skugga för att ge djup */
   z-index: 1; /* Se till att dropdownen visas ovanpå andra element */
-  top: 100%; /* Placera dropdownen direkt under knappen */
+  top: calc(100% + 10px); /* Placera dropdownen 10 pixlar under knappen */
   left: 0; /* Justera till vänster kant av föräldern */
+  border-radius: 20px; /* Rundade hörn */
 }
 
 .dropdown-content a {
@@ -140,6 +158,7 @@
   padding: 12px 16px; /* Inre marginaler för länkar */
   text-decoration: none; /* Ta bort understrykning */
   display: block; /* Gör länkar blockelement så att hela området är klickbart */
+  font: 700 18px Roboto, sans-serif; /* Använd Roboto som font och samma storlek */
 }
 
 .dropdown-content a:hover {
@@ -149,6 +168,24 @@
 /* Visa dropdown-innehållet när dropdownOpen är true */
 .dropdown-content.show {
   display: block; /* Visa dropdown-innehållet */
+}
+
+/* Stil för sökfältet */
+#myInput {
+  width: 80%; /* Gör sökfältet fullt brett i dropdown-listan */
+  padding: 10px; /* Inre marginaler för sökfältet */
+  border-radius: 5px; /* Rundade hörn */
+  border: 1px solid #ccc; /* Ljusgrå kant */
+  font-size: 16px; /* Större teckensnitt */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Liten skugga för djup */
+  margin-bottom: 10px; /* Lägg till lite avstånd under sökfältet */
+}
+
+/* Stil för sökfältet när det får fokus */
+#myInput:focus {
+  border-color: #007bff; /* Kantfärg vid fokus */
+  outline: none; /* Ta bort standard fokuslinje */
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Lägga till skugga vid fokus */
 }
 
 @media (max-width: 991px) {
