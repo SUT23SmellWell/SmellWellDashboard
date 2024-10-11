@@ -16,11 +16,7 @@
         <h1 class="page-title">{{ pageTitle }}</h1>
       </nav>
       <section class="product-highlight">
-        <img
-          src="https://cdn.builder.io/api/v1/image/assets/TEMP/71f132d0b045be2824adf50c6d7d9e22e4ce3db046535a067394da4a639cbce4?apiKey=0b48fe8e354b4d2f9b80496aa2074bf7&"
-          alt="Smellwell Active product"
-          class="product-image"
-        />
+        <img [src]="productImageUrl" alt="{{ productName }}" style="max-width: 100%; height: auto;">
         <div class="product-info">
           <h2 class="product-category">{{ productCategory }}</h2>
           <p class="product-name">{{ productName }}</p>
