@@ -112,7 +112,7 @@
   font: 700 18px Roboto, sans-serif;
   white-space: nowrap; /* Förhindra texten från att brytas */
   overflow: hidden; /* Dölj överflödig text */
-  text-overflow: ellipsis; /* Visa ellipsis om texten är för lång */
+  text-overflow: ellipsis; /* Visa ellipsis om texten är för lång hej */
 }
 
 .dropbtn {
