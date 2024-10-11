@@ -20,7 +20,9 @@ namespace GoogleAPI
             {
                 options.AddPolicy("AllowAllOrigins", builder =>
                 {
-                    builder.WithOrigins("http://localhost:4200")
+                    builder.WithOrigins(
+                        "https://googlesheetsapi-b4e4bdh9a0fpakg0.westeurope-01.azurewebsites.net/",
+                        "http://localhost:4200")
                            .AllowAnyHeader()
                            .AllowAnyMethod();
                 });

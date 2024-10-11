@@ -32,7 +32,7 @@
             class="decorative-image"
           />
         </button>
-        <div id="myDropdown" class="dropdown-content" *ngIf="dropdownOpen">
+        <div id="myDropdown" class="dropdown-content" [ngClass]="{'show': dropdownOpen}">
           <input type="text" placeholder="Search.." id="myInput" (keyup)="filterFunction()">
           <a *ngFor="let product of filteredProducts" (click)="selectProduct(product)">{{ product.name }}</a>
         </div>
