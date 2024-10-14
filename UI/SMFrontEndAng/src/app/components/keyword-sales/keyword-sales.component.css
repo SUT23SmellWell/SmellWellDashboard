@@ -136,9 +136,13 @@
 
 .main-content {
   background: var(--color-grey-90, #e3e6e7);
-  min-height: 1190px;
-  margin-top: 10px;
-  width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    margin-top: 20px; /* Lägg till mellanrum till navbaren */
+  gap: 20px; /* Lägg till mellanrum mellan elementen */
+  padding: 20px; 
+  
 }
 
 .dropdown-content {
