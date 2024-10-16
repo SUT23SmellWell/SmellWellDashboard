@@ -16,7 +16,7 @@ export class OrganicRankingComponent implements OnInit, OnChanges {
   @Input() productVariant = "Product Variant";
   @Input() headers: string[] = ['Keyword', 'Organic Rank', 'Rank Change', 'Total Searches', 'Clicks This Month', 'CVR', 'Sales'];
   @Input() data: any[] = []; // Definiera data som en array
-  @Input() apiUrl: string = 'https://localhost:7050/KWRANKING'; // Standard API-URL
+  @Input() apiUrl: string = 'https://swgooglesheetsapi.azurewebsites.net/KWRANKING'; // Standard API-URL
 
   constructor(private http: HttpClient) {}
 

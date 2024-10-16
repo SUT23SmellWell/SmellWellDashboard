@@ -19,9 +19,9 @@ export class KeywordSalesComponent implements OnInit {
 
   // Lägg till apiUrl för varje produkt
   products = [
-    { name: 'Black Zebra', category: 'Smellwell Active', imageUrl: 'assets/Active_Original_Black_Zebra.jpg', apiUrl: 'https://localhost:7050/KWRANKING?option=1' },
-    { name: 'Leopard', category: 'Smellwell Active', imageUrl: 'assets/Active_Original_Leo.jpg', apiUrl: 'https://localhost:7050/KWRANKING?option=2' },
-    { name: 'Product Floral', category: 'Smellwell Active', imageUrl: 'assets/Active_Original_Fresh_Floral.jpg', apiUrl: 'https://localhost:7050/KWRANKING?option=1' },
+    { name: 'Black Zebra', category: 'Smellwell Active', imageUrl: 'assets/Active_Original_Black_Zebra.jpg', apiUrl: 'https://swgooglesheetsapi.azurewebsites.net/KWRANKING?option=1' },
+    { name: 'Leopard', category: 'Smellwell Active', imageUrl: 'assets/Active_Original_Leo.jpg', apiUrl: 'https://swgooglesheetsapi.azurewebsites.net/KWRANKING?option=2' },
+    { name: 'Product Floral', category: 'Smellwell Active', imageUrl: 'assets/Active_Original_Fresh_Floral.jpg', apiUrl: 'https://swgooglesheetsapi.azurewebsites.net/KWRANKING' },
   ];
 
   filteredProducts = [...this.products];
