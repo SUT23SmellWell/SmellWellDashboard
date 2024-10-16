@@ -107,6 +107,9 @@
   font: 400 24px/1 Rajdhani, sans-serif;
 }
 
+.product-image{
+height: 75%;
+}
 .product-name {
   margin-top: 6px;
   font: 700 18px Roboto, sans-serif;
