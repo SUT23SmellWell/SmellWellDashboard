@@ -1,5 +1,5 @@
 import { HttpClient } from "@angular/common/http";
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, OnInit, Input, OnChanges, SimpleChanges } from "@angular/core";
 import { CommonModule } from "@angular/common";
 
 @Component({
@@ -9,13 +9,13 @@ import { CommonModule } from "@angular/common";
   templateUrl: "./organic-ranking.component.html",
   styleUrls: ["./organic-ranking.component.css"],
 })
-export class OrganicRankingComponent implements OnInit {
-  title = "Organic Ranking";
-  subtitle = "Top Keywords";
-  productName = "Product Name";
-  productVariant = "Product Variant";
-  headers: string[] = ['Keyword', 'Organic Rank', 'Rank Change', 'Total Searches', 'Clicks This Month', 'CVR', 'Sales'];
-  data: any[] = []; // Definiera data som en array
+export class OrganicRankingComponent implements OnInit, OnChanges {
+  @Input() title = "Organic Ranking";
+  @Input() subtitle = "Top Keywords";
+  @Input() productName = "Product Name";
+  @Input() productVariant = "Product Variant";
+  @Input() headers: string[] = ['Keyword', 'Organic Rank', 'Rank Change', 'Total Searches', 'Clicks This Month', 'CVR', 'Sales'];
+  @Input() data: any[] = []; // Definiera data som en array
   @Input() apiUrl: string = 'https://localhost:7050/KWRANKING'; // Standard API-URL
 
   constructor(private http: HttpClient) {}
@@ -24,8 +24,10 @@ export class OrganicRankingComponent implements OnInit {
     this.fetchData(); // Hämta data vid initialisering
   }
 
-  ngOnChanges(): void {
-    this.fetchData(); // Hämta data varje gång apiUrl ändras
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['apiUrl']) {
+      this.fetchData(); // Hämta data varje gång apiUrl ändras
+    }
   }
 
   fetchData(): void {

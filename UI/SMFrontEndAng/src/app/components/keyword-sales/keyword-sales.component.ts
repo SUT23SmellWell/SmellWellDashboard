@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
-import { CommonModule } from "@angular/common";
 import { OrganicRankingComponent } from "../organic-ranking/organic-ranking.component";
+import { CommonModule } from "@angular/common";
 import { SalesOverviewComponent } from "../sales-overview/sales-overview.component";
 
 @Component({
