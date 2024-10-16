@@ -7,6 +7,8 @@
 
 .organic-ranking-widget {
   max-width: 844px;
+  display:flex;
+  flex-direction: column;
 }
 
 .widget-background {
