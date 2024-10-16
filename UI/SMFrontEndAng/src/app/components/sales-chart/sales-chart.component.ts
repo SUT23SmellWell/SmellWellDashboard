@@ -19,4 +19,12 @@ export class SalesChartComponent {
 
   salesData: number[] = [50, 114, 146, 138, 74, 82, 74, 74, 82, 82, 98, 8];
   goalsData: number[] = [26, 66, 130, 130, 34, 98, 74, 66, 106, 82, 8, 8];
+
+  getNormalizedData(data: number[]): number[] {
+    const max = Math.max(...data);
+    return data.map(value => (value / max) * 100);
+  }
+
+  normalizedSalesData = this.getNormalizedData(this.salesData);
+  normalizedGoalsData = this.getNormalizedData(this.goalsData);
 }
