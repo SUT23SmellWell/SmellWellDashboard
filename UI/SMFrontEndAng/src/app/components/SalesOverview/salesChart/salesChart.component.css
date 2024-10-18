@@ -105,40 +105,6 @@
   flex: 1; /* Allow month-label to scale */
 }
 
-.chart-content {
-  display: flex;
-  align-items: flex-end;
-  gap: 6px;
-  overflow: hidden;
-  flex-wrap: wrap;
-}
-
-.chart__column {
-  display: flex;
-  align-items: flex-end;
-  gap: 1px;
-}
-
-.chart__bar {
-  width: 28px;
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-}
-
-.chart__bar--goals {
-  background-color: #328082;
-}
-
-.chart__bar--sales {
-  background-color: #a7f6f2;
-}
-
-.chart__bar-inner {
-  width: 100%;
-  height: calc(100% - 2px);
-  background-color: #000;
-}
 
 @media (max-width: 991px) {
   .chart-container {
