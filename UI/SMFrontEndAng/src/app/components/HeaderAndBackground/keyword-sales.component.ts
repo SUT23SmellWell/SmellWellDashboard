@@ -2,11 +2,12 @@ import { Component, OnInit } from "@angular/core";
 import { OrganicRankingComponent } from "../organic-ranking/organic-ranking.component";
 import { CommonModule } from "@angular/common";
 import { SalesOverviewComponent } from "../sales-overview/sales-overview.component";
+import { MonthlyBudgetTrackerComponent } from "../monthly-budget-tracker/monthly-budget-tracker.component";
 
 @Component({
   selector: "app-keyword-sales",
   standalone: true,
-  imports: [OrganicRankingComponent, CommonModule, SalesOverviewComponent],
+  imports: [OrganicRankingComponent, CommonModule, SalesOverviewComponent, MonthlyBudgetTrackerComponent],
   templateUrl: "./keyword-sales.component.html",
   styleUrls: ["./keyword-sales.component.css"],
 })

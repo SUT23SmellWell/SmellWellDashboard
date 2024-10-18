@@ -10,65 +10,21 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./sales-chart.component.css'],
 })
 export class SalesChartComponent implements OnInit {
-  months: string[] = [
-    'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-    'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
-  ];
+  yAxisValues: number[] = [0, 5000, 10000, 15000, 20000, 25000, 30000];
+  months: string[] = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  normalizedSalesData!: number[];
+  normalizedGoalsData!: number[];
 
-  salesData: number[] = new Array(12).fill(0);
-  goalsData: number[] = new Array(12).fill(0);
-  normalizedSalesData: number[] = [];
-  normalizedGoalsData: number[] = [];
-
-  constructor(private http: HttpClient) {}
+  rawSalesData: number[] = [12000, 15000, 18000, 20000, 22000, 25000, 27000, 30000, 28000, 26000, 24000, 22000];
+  rawGoalsData: number[] = [10000, 14000, 16000, 19000, 21000, 23000, 25000, 27000, 26000, 24000, 22000, 20000];
 
   ngOnInit() {
-    this.loadMonthlyData();
+    this.normalizedSalesData = this.normalizeData(this.rawSalesData);
+    this.normalizedGoalsData = this.normalizeData(this.rawGoalsData);
   }
 
-  loadMonthlyData() {
-    const promises = this.months.map((_, index) => {
-      const apiUrl = `https://localhost:7050/SALESRANKING/${index + 1}`;
-      return this.http.get<{ totalSales: string, budget: string }>(apiUrl).toPromise()
-        .then(data => {
-          if (data) {
-            const sales = parseFloat(data.totalSales.replace(',', '')) || 0;
-            const budget = parseFloat(data.budget.replace(',', '')) || 0; 
-
-            this.salesData[index] = sales;
-            this.goalsData[index] = budget;
-
-            console.log(`Data for month ${index + 1}:`, data);
-            console.log(`Sales: ${sales}, Budget: ${budget}`);
-          }
-        })
-        .catch(error => {
-          console.error(`Failed to load data for month ${index + 1}:`, error);
-        });
-    });
-
-    Promise.all(promises).then(() => {
-      const maxSales = Math.max(...this.salesData);
-      const maxGoals = Math.max(...this.goalsData);
-      const maxYValue = Math.max(maxSales, maxGoals);
-
-      this.normalizedSalesData = this.getNormalizedData(this.salesData, maxYValue);
-      this.normalizedGoalsData = this.getNormalizedData(this.goalsData, maxYValue);
-    });
+  normalizeData(data: number[]): number[] {
+    const max = Math.max(...data);
+    return data.map(value => (value / max) * 100);
   }
-
-  getNormalizedData(data: number[], maxYValue: number): number[] {
-    return data.map(value => (maxYValue > 0 ? (value / maxYValue) * 100 : 0));
-  }
-  getYAxisValues(): number[] {
-  const maxValue = Math.max(...this.salesData, ...this.goalsData);
-  const step = Math.ceil(maxValue / 5000); // Skapa steg baserat på 5000
-  const values = [];
-  
-  for (let i = 0; i <= maxValue; i += step) {
-    values.push(i);
-  }
-  
-  return values;
-}
 }

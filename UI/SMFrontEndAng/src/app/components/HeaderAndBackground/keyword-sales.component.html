@@ -37,7 +37,11 @@
   </div>
 </header>
 <main class="main-content">
-  <app-organic-ranking [apiUrl]="currentApiUrl"
-  [productName]="productName"[productVariant]="productCategory"></app-organic-ranking>
-  <app-sales-overview></app-sales-overview>
+  <div class="general-info-widgets">
+    <app-monthly-budget-tracker></app-monthly-budget-tracker>
+    <app-sales-overview></app-sales-overview>
+  </div>
+  <div class="product-specific-widgets">
+  <app-organic-ranking [apiUrl]="currentApiUrl" [productName]="productName" [productVariant]="productCategory"></app-organic-ranking>
+</div>
 </main>
