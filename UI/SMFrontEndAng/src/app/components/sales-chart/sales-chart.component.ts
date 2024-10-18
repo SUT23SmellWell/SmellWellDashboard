@@ -26,7 +26,7 @@ export class SalesChartComponent implements OnInit {
 
   loadMonthlyData() {
     const promises = this.months.map((_, index) => {
-      const apiUrl = `https://localhost:7050/SALESRANKING/${index + 1}`;
+      const apiUrl = `https://swgooglesheetsapi.azurewebsites.net/SALESRANKING/${index + 1}`;
       return this.http.get<{ totalSales: string, budget: string }>(apiUrl).toPromise()
         .then(data => {
           if (data) {
