@@ -87,7 +87,7 @@
   padding: 10px; /*Gör rutan större**/
   border-radius: 8px;
   position: absolute;
-  bottom: 110%; /*Position above the bar*/
+  bottom: 20%; /*Position above the bar*/
   left: 50%;
   transform: translateX(-50%);
   z-index: 1;
