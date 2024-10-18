@@ -7,17 +7,17 @@
       <div *ngFor="let _ of yAxisValues" class="grid-line"></div>
     </div>
     <div class="bars">
-      <div *ngFor="let month of months; let i = index" class="month-group">
+      <div *ngFor="let month of months.slice(startMonth, startMonth + displayMonths); let i = index" class="month-group">
         <div class="bar sales" [style.height.%]="normalizedSalesData[i]">
-          <div class="tooltip">{{ salesData[i] | currency:'USD':'symbol' }}</div> <!-- Visa i dollar -->
+          <div class="tooltip">{{ salesData[startMonth + i] | currency:'USD':'symbol' }}</div>
         </div>
         <div class="bar goals" [style.height.%]="normalizedGoalsData[i]">
-          <div class="tooltip">{{ goalsData[i] | currency:'USD':'symbol' }}</div> <!-- Visa i dollar -->
+          <div class="tooltip">{{ goalsData[startMonth + i] | currency:'USD':'symbol' }}</div>
         </div>
       </div>
     </div>
     <div class="x-axis">
-      <div *ngFor="let month of months" class="month-label">{{ month }}</div>
+      <div *ngFor="let month of months.slice(startMonth, startMonth + displayMonths)" class="month-label">{{ month }}</div>
     </div>
   </div>
 </div>

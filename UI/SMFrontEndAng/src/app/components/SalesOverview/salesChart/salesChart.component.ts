@@ -20,6 +20,8 @@ export class SalesChartComponent implements OnInit {
   yAxisValues: number[] = [];
   normalizedSalesData: number[] = [];
   normalizedGoalsData: number[] = [];
+  displayMonths: number = 12; // Track the number of months to display
+  startMonth: number = 0; // Track the starting month for 6 months display
 
   constructor(private http: HttpClient) {}
 
@@ -28,23 +30,24 @@ export class SalesChartComponent implements OnInit {
   }
 
   loadMonthlyData() {
-    const promises = this.months.map((_, index) => {
-      const apiUrl = `https://swgooglesheetsapi.azurewebsites.net/SALESRANKING/${index + 1}`;
+    const startIndex = this.displayMonths === 6 ? this.startMonth : this.months.length - this.displayMonths;
+    const promises = this.months.slice(startIndex, startIndex + this.displayMonths).map((_, index) => {
+      const apiUrl = `https://swgooglesheetsapi.azurewebsites.net/SALESRANKING/${startIndex + index + 1}`;
       return this.http.get<{ totalSales: string, budget: string }>(apiUrl).toPromise()
         .then(data => {
           if (data) {
             const sales = parseFloat(data.totalSales.replace(',', '')) || 0;
             const budget = parseFloat(data.budget.replace(',', '')) || 0; 
 
-            this.salesData[index] = sales;
-            this.goalsData[index] = budget;
+            this.salesData[startIndex + index] = sales;
+            this.goalsData[startIndex + index] = budget;
 
-            console.log(`Data for month ${index + 1}:`, data);
+            console.log(`Data for month ${startIndex + index + 1}:`, data);
             console.log(`Sales: ${sales}, Budget: ${budget}`);
           }
         })
         .catch(error => {
-          console.error(`Failed to load data for month ${index + 1}:`, error);
+          console.error(`Failed to load data for month ${startIndex + index + 1}:`, error);
         });
     });
 
@@ -55,17 +58,18 @@ export class SalesChartComponent implements OnInit {
 
   updateChart() {
     // Beräkna maxvärden för y-axeln och normalisering
-    const maxSales = Math.max(...this.salesData);
-    const maxGoals = Math.max(...this.goalsData);
+    const startIndex = this.displayMonths === 6 ? this.startMonth : this.salesData.length - this.displayMonths;
+    const maxSales = Math.max(...this.salesData.slice(startIndex, startIndex + this.displayMonths));
+    const maxGoals = Math.max(...this.goalsData.slice(startIndex, startIndex + this.displayMonths));
     const maxYValue = Math.max(maxSales, maxGoals);
 
     // Sätt y-axelvärdena baserat på ett avrundat maxvärde
     this.yAxisValues = this.getYAxisValues(maxYValue);
 
     // Normalisera försäljnings- och budgetdata för att matcha y-axeln
-    const yAxisMaxValue = Math.max(...this.yAxisValues); // Använd maxvärdet från y-axeln
-    this.normalizedSalesData = this.getNormalizedData(this.salesData, yAxisMaxValue);
-    this.normalizedGoalsData = this.getNormalizedData(this.goalsData, yAxisMaxValue);
+    const yAxisMaxValue = Math.max(...this.yAxisValues);
+    this.normalizedSalesData = this.getNormalizedData(this.salesData.slice(startIndex, startIndex + this.displayMonths), yAxisMaxValue);
+    this.normalizedGoalsData = this.getNormalizedData(this.goalsData.slice(startIndex, startIndex + this.displayMonths), yAxisMaxValue);
   }
 
   getNormalizedData(data: number[], maxYValue: number): number[] {
@@ -73,8 +77,8 @@ export class SalesChartComponent implements OnInit {
   }
 
   getYAxisValues(maxValue: number): number[] {
-    const step = 5000; // Steg om 5000
-    const maxYValue = Math.ceil(maxValue / step) * step; // T.ex. 40,000 om max är 37,460
+    const step = 5000;
+    const maxYValue = Math.ceil(maxValue / step) * step;
     const values = [];
 
     for (let i = 0; i <= maxYValue; i += step) {
