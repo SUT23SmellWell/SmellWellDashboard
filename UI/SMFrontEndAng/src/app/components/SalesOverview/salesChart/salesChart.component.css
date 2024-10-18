@@ -34,7 +34,7 @@
   position: absolute;
   top: 0;
   left: 0;
-  right:0;
+  right: 0;
   bottom: 40px;
   display: flex;
   flex-direction: column;
@@ -57,9 +57,9 @@
   gap: 20px;
   height: 100%;
   padding-bottom: 40px; /* Align with grid lines */
+  padding-left: 50px; /* Add padding to the left */
+  padding-right: 50px; /* Add padding to the right */
   position: relative;
-  left: 50px;
-  width: calc(100% - 100px); /* Make the bars container 100px narrower */
 }
 
 .month-group {
