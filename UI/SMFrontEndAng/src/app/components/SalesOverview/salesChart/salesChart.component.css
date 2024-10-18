@@ -34,7 +34,7 @@
   position: absolute;
   top: 0;
   left: 0;
-  right: -50px; /* Extend 50px past the right edge */
+  right:0;
   bottom: 40px;
   display: flex;
   flex-direction: column;
@@ -59,6 +59,7 @@
   padding-bottom: 40px; /* Align with grid lines */
   position: relative;
   left: 50px;
+  width: calc(100% - 100px); /* Make the bars container 100px narrower */
 }
 
 .month-group {
@@ -68,7 +69,7 @@
   gap: 1px;
   height: 100%; /* Ensure it takes the full height of the bars container */
   margin-bottom: 10px; /* Add margin to match the x-axis */
-  width: 57px; /* Set width to match the combined width of the bars */
+  flex: 1; /* Allow month-group to scale */
 }
 
 .bar {
@@ -94,14 +95,14 @@
   position: absolute;
   bottom: 0;
   left: 50px; /* Align with chart margin */
-  right: 0;
+  right: 50px; /* Make the x-axis container 100px narrower */
 }
 
 .month-label {
   color: #737791;
   font-size: 22.8px;
   text-align: center;
-  flex: 0 0 57px; /* Prevent shrinking or growing */
+  flex: 1; /* Allow month-label to scale */
 }
 
 .chart-content {

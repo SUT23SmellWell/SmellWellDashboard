@@ -4,12 +4,13 @@
 import { Component } from '@angular/core';
 import { SalesChartComponent } from '../sales-chart/sales-chart.component';
 import { ChartComponent } from "../chart/chart.component";
+import { SalesChartComponent2 } from '../salesChart/salesChart.component';
 @Component({
   selector: 'app-sales-overview',
   standalone: true,
   templateUrl: './sales-overview.component.html',
   styleUrls: ['./sales-overview.component.css'],
-  imports: [ChartComponent, SalesChartComponent ]
+  imports: [ChartComponent, SalesChartComponent, SalesChartComponent2]
 })
 export class SalesOverviewComponent {
   year: number = 2024;
