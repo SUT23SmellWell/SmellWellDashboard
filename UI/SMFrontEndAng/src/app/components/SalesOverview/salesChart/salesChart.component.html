@@ -1,0 +1,23 @@
+<div class="chart-container">
+  <div class="y-axis">
+    <div *ngFor="let value of yAxisValues">{{ value }}</div>
+  </div>
+  <div class="chart">
+    <div class="grid-lines">
+      <div *ngFor="let _ of yAxisValues" class="grid-line"></div>
+    </div>
+    <div class="bars">
+      <div *ngFor="let month of months; let i = index" class="month-group">
+        <div class="bar sales" [style.height.%]="normalizedSalesData[i]"></div>
+        <div class="bar goals" [style.height.%]="normalizedGoalsData[i]"></div>
+      </div>
+    </div>
+    <div class="x-axis">
+      <div *ngFor="let month of months" class="month-label">{{ month }}</div>
+    </div>
+  </div>
+  <div class="chart-footer"></div>
+  <div class="chart-legend">
+    <div class="legend-item"></div>
+  </div>
+</div>
