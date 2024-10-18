@@ -212,7 +212,12 @@
   outline: none; /* Ta bort standard fokuslinje */
   box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Lägga till skugga vid fokus */
 }
-
+.dummiewidget{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 50%;
+}
 @media (max-width: 991px) {
   .header-content {
     max-width: 100%;
