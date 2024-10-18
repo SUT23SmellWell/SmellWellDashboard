@@ -9,7 +9,7 @@ import { CommonModule } from '@angular/common';
   templateUrl: './salesChart.component.html',
   styleUrls: ['./salesChart.component.css'],
 })
-export class SalesChartComponent2 implements OnInit {
+export class SalesChartComponent implements OnInit {
   @Input() months: string[] = [
     'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
     'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
