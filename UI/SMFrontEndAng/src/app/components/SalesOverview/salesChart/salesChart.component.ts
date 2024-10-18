@@ -15,17 +15,11 @@ export class SalesChartComponent implements OnInit {
     'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
   ];
   @Input() goalsData: number[] = [26, 66, 130, 130, 34, 98, 74, 66, 106, 10, 0, 0];
-  @Input() salesData: number[] = [50, 114, 146, 138, 74, 82, 74, 74, 82, 82, 98, 0];
+  @Input() salesData: number[] = [50, 114, 146, 138, 74, 82, 74, 74, 82, 82, 98, 37460.1];
 
-  yAxisValues: number[] = [0, 5000, 10000, 15000, 20000, 25000, 30000];
+  yAxisValues: number[] = [];
   normalizedSalesData: number[] = [];
   normalizedGoalsData: number[] = [];
-  yAxisLabels: string[] = ['0', '5000', '10000', '15000', '20000', '25000', '30000'];
-  chartLines: { src: string, alt: string, isBold: boolean }[] = [
-    { src: 'line1.png', alt: 'Line 1', isBold: false },
-    { src: 'line2.png', alt: 'Line 2', isBold: true },
-    // Add more lines as needed
-  ];
 
   constructor(private http: HttpClient) {}
 
@@ -55,28 +49,38 @@ export class SalesChartComponent implements OnInit {
     });
 
     Promise.all(promises).then(() => {
-      const maxSales = Math.max(...this.salesData);
-      const maxGoals = Math.max(...this.goalsData);
-      const maxYValue = Math.max(maxSales, maxGoals);
-
-      this.normalizedSalesData = this.getNormalizedData(this.salesData, maxYValue);
-      this.normalizedGoalsData = this.getNormalizedData(this.goalsData, maxYValue);
+      this.updateChart();
     });
+  }
+
+  updateChart() {
+    // Beräkna maxvärden för y-axeln och normalisering
+    const maxSales = Math.max(...this.salesData);
+    const maxGoals = Math.max(...this.goalsData);
+    const maxYValue = Math.max(maxSales, maxGoals);
+
+    // Sätt y-axelvärdena baserat på ett avrundat maxvärde
+    this.yAxisValues = this.getYAxisValues(maxYValue);
+
+    // Normalisera försäljnings- och budgetdata för att matcha y-axeln
+    const yAxisMaxValue = Math.max(...this.yAxisValues); // Använd maxvärdet från y-axeln
+    this.normalizedSalesData = this.getNormalizedData(this.salesData, yAxisMaxValue);
+    this.normalizedGoalsData = this.getNormalizedData(this.goalsData, yAxisMaxValue);
   }
 
   getNormalizedData(data: number[], maxYValue: number): number[] {
     return data.map(value => (maxYValue > 0 ? (value / maxYValue) * 100 : 0));
   }
 
-  getYAxisValues(): number[] {
-    const maxValue = Math.max(...this.salesData, ...this.goalsData);
-    const step = Math.ceil(maxValue / 5000); // Create steps based on 5000
+  getYAxisValues(maxValue: number): number[] {
+    const step = 5000; // Steg om 5000
+    const maxYValue = Math.ceil(maxValue / step) * step; // T.ex. 40,000 om max är 37,460
     const values = [];
-    
-    for (let i = 0; i <= maxValue; i += step) {
+
+    for (let i = 0; i <= maxYValue; i += step) {
       values.push(i);
     }
-    
+
     return values;
   }
 }
