@@ -7,9 +7,10 @@
 
 .monthly-sales {
   display: flex;
-  max-width: 1200px; 
+  width: 50%; 
   flex-direction: column;
   box-sizing: border-box;
+  
 }
 
 .widget-background-budget-tracker {
@@ -70,7 +71,7 @@
 }
 
 .progress-bar {
-  background-color: inherit; /* Match the background color of table-divider */
+  background-color: #a7f6f2;
   border-radius: 10px;
   height: 20px;
   margin-top: 10px;
@@ -82,11 +83,18 @@
   background-color: #328082;
   border-radius: 10px;
   height: 100%;
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  display: flex; /* Added for centering text */
+  align-items: center; /* Center text vertically */
+  justify-content: center; /* Center text horizontally */
+  color: white; /* Ensure text is visible */
 }
 
 .calendar {
   background-color: #fff;
   width: 100%;
+  
   border-radius: 10px;
   padding: 10px 0;
   margin-top: 10px;
@@ -95,15 +103,40 @@
 .days-grid {
   box-sizing: border-box;
   display: flex;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
+  overflow-x:auto;
   border: 1px solid #dfdfdf;
+  border-radius: 10px;
+  transition: all 0.9s ease;
+}
+Custom scrollbar styling
+.days-grid::-webkit-scrollbar {
+  height: 5px; /* Height of the horizontal scrollbar */
+  background: transparent; /* Make scrollbar track transparent */
+}
+
+.days-grid::-webkit-scrollbar-track {
+  background: transparent; /* Make scrollbar track transparent */
   border-radius: 10px;
 }
 
+.days-grid::-webkit-scrollbar-thumb {
+  background: transparent; /* Make scrollbar thumb transparent */
+  border-radius: 10px;
+  transition: background 0.3s ease; /* Smooth transition for scrollbar thumb */
+}
+
+.days-grid:hover::-webkit-scrollbar-thumb {
+  background: #bebebe; /* Color of the scrollbar thumb on hover */
+}
+
+.days-grid:hover::-webkit-scrollbar-thumb:hover {
+  background: #7e7e7e; /* Color of the scrollbar thumb on hover */
+}
 .day-button {
   color: #333;
   cursor: pointer;
-  flex: 1 0 calc(50% / 7);
+  flex: 1 0 calc(100% / 31);
   text-align: center;
   padding: 5px 0;
   font-family: 'Roboto', sans-serif; /* Match the font-family of widget-subtitle */
@@ -111,17 +144,25 @@
   border: none;
   background: inherit;
 }
-
+.today {
+  background-color: #d4edda; /* Light green background */
+  color: #155724; /* Dark green text */
+  transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition */
+}
 .day-button:hover,
 .day-button:focus {
-  background-color: #f0f0f0;
+  transition: hover 0.3s ease;
+  background-color: #d3d3d3;
   outline: none;
 }
 
 .day-button:focus-visible {
   box-shadow: 0 0 0 2px #328082;
 }
-
+.day-button:after {
+  background-color: #328082;
+  color: #fff;
+}
 @media (max-width: 991px) {
   .monthly-sales {
     padding-bottom: 100px; /* Match the padding-bottom of widget-background */

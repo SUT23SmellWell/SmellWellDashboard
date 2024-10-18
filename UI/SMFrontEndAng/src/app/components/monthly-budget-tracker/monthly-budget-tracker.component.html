@@ -20,16 +20,15 @@
           <p class="sales-goal">Goal: ${{ salesGoal }}</p>
         </div>
         <div class="progress-bar">
-          <div class="progress" [style.width.%]="progressPercentage"></div>
+          <div class="progress" [style.width.%]="progressPercentage">{{ progressPercentage | number: '1.1-1' }}%</div>
         </div>
         <div class="calendar">
           <div class="days-grid">
             <button
-              *ngFor="let day of dailySales"
               class="day-button"
-              [attr.data-sales]="'Sales: $' + day.sales"
+              *ngFor="let day of dailySales"
+              [ngClass]="{ 'today': isToday(day.day) }"
               (click)="updateSales(day.day)"
-              tabindex="0"
             >
               {{ day.day }}
             </button>
