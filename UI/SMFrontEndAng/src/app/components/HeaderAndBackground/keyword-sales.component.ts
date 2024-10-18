@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { OrganicRankingComponent } from "../organic-ranking/organic-ranking.component";
 import { CommonModule } from "@angular/common";
-import { SalesOverviewComponent } from "../sales-overview/sales-overview.component";
+import { SalesOverviewComponent } from "../SalesOverview/sales-overview/sales-overview.component";
 import { MonthlyBudgetTrackerComponent } from "../monthly-budget-tracker/monthly-budget-tracker.component";
 
 @Component({
