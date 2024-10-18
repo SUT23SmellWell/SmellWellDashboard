@@ -7,7 +7,7 @@
 
 .monthly-sales {
   display: flex;
-  width: 50%; 
+
   flex-direction: column;
   box-sizing: border-box;
   

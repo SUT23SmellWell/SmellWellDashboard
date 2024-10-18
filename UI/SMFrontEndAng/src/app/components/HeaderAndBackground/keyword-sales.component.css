@@ -148,16 +148,18 @@
 
 .general-info-widgets {
   display: flex;
-  flex-wrap: wrap;
-  flex-direction: row; /* Arrange items side by side */
   gap: 20px; /* Add space between the widgets */
-  flex-grow: 1; /* Allow general-info-widgets to grow and fill available space */
 }
 
 .general-info-widgets > * {
   flex: 1; /* Allow child components to take equal space */
 }
-
+.budget-trackers {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 50%;
+}
 .product-specific-widgets {
   display: flex;
   flex-direction: row;
