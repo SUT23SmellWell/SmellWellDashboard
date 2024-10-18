@@ -18,6 +18,9 @@ export class KeywordSalesComponent implements OnInit {
   productImageUrl = 'assets/Active_Original_Black_Zebra.jpg'; // Sätt standardbild
   dropdownOpen = false;
 
+  dummiePics= [
+    { imgUrl: 'assets/BildPåWidget.jpg' },
+  ]
   // Lägg till apiUrl för varje produkt
   products = [
     { name: 'Black Zebra', category: 'Smellwell Active', imageUrl: 'assets/Active_Original_Black_Zebra.jpg', apiUrl: 'https://swgooglesheetsapi.azurewebsites.net/KWRANKING?option=1' },
