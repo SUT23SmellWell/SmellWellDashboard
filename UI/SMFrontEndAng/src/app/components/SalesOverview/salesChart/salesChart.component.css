@@ -79,6 +79,34 @@
   bottom: 0; /* Align with grid lines */
 }
 
+.tooltip {
+  visibility: hidden;
+  background-color: #ffffff; /* Vit bakgrund*/
+  color: #000; /*Svart text*/
+  text-align: center;
+  padding: 10px; /*Gör rutan större**/
+  border-radius: 8px;
+  position: absolute;
+  bottom: 110%; /*Position above the bar*/
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+
+  font-family: 'Rajdhani', sans-serif; 
+  font-size: 20px; /* Gör texten större */
+  font-weight: 600; /* Gör texten lite fetare */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Lägg till en liten skugga */
+  border: 1px solid #d3d3d3; /* En lätt kantlinje för att separera tooltip från bakgrunden */
+}
+
+.bar:hover .tooltip {
+  visibility: visible;
+  opacity: 1;
+}
+
 .bar.sales {
   background-color: #a7f6f2;
 }
