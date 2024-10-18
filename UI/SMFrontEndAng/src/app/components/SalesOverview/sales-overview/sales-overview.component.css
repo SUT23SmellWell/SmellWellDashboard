@@ -101,11 +101,11 @@
 }
 
 .legend-icon.budget {
-  fill: #328082;
+  fill: #a7f6f2;
 }
 
 .legend-icon.goals {
-  fill: #a7f6f2;
+  fill: #328082;
 }
 
 @media (max-width: 991px) {

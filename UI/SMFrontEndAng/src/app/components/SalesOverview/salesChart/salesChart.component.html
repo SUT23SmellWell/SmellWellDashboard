@@ -8,16 +8,16 @@
     </div>
     <div class="bars">
       <div *ngFor="let month of months; let i = index" class="month-group">
-        <div class="bar sales" [style.height.%]="normalizedSalesData[i]"></div>
-        <div class="bar goals" [style.height.%]="normalizedGoalsData[i]"></div>
+        <div class="bar sales" [style.height.%]="normalizedSalesData[i]">
+          <div class="tooltip">{{ salesData[i] | currency:'USD':'symbol' }}</div> <!-- Visa i dollar -->
+        </div>
+        <div class="bar goals" [style.height.%]="normalizedGoalsData[i]">
+          <div class="tooltip">{{ goalsData[i] | currency:'USD':'symbol' }}</div> <!-- Visa i dollar -->
+        </div>
       </div>
     </div>
     <div class="x-axis">
       <div *ngFor="let month of months" class="month-label">{{ month }}</div>
     </div>
-  </div>
-  <div class="chart-footer"></div>
-  <div class="chart-legend">
-    <div class="legend-item"></div>
   </div>
 </div>
