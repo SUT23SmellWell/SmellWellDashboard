@@ -1,5 +1,5 @@
 :host {
-  display: contents;
+  display: block;
 }
 
 .page-header {
@@ -50,6 +50,7 @@
   flex-wrap: wrap;
   margin: auto 0;
   font: 700 30px/41px Inter, sans-serif;
+  
 }
 
 .company-logo {
@@ -76,7 +77,10 @@
   color: #000;
   cursor: pointer;
   transition: transform 0.3s ease;
-  position: relative; /* Nödvändig för att dropdown ska placeras rätt */
+  position: fixed; /* Gör att sektionen är fixerad i fönstret */
+  top: 20px;
+  right: 50px; /* Justera detta värde beroende på hur långt ner du vill att sektionen ska vara från toppen */
+  z-index: 1000; /* Se till att den ligger ovanför andra element */
   width: 400px; /* Sätt en fast bredd */
   align-items: center; /* Centrera innehållet vertikalt */
 }
