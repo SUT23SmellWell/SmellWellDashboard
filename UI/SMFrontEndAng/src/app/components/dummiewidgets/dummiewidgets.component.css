@@ -1,0 +1,55 @@
+:host {
+    display: contents;
+  }
+  
+  .dummie-widget {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    flex-grow: 1; /* Lägg till flex-grow för att ta lika mycket plats */
+  }
+  
+  .widget-background-budget-tracker {
+    background: linear-gradient(360deg, #328082 0%, #a7f6f2 100%);
+    border: 1px solid none;
+    border-radius: 20px;
+    box-shadow: 0 4px 20px rgba(238, 238, 238, 0.502);
+    padding: 47px 16px;
+    overflow: hidden;
+    flex-grow: 1; /* Lägg till flex-grow för att ta lika mycket plats */
+  
+  }
+  
+  .widget-header {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px 100px;
+    justify-content: center;
+    margin-bottom: 1%;
+    width: 100%;
+  }
+  .widget-title {
+    color: #fff; /* Match the color of widget-title */
+    text-align: center;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    font-family: 'Rajdhani', sans-serif; /* Match the font-family of widget-title */
+  }
+  
+  .widget-subtitle {
+    display: block;
+    font: 400 16px/1.5 'Roboto', sans-serif;
+    color: #d4d4d4;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    font-size: 16px;
+    font-weight: 400;
+  }
+  
+  .content-wrapper {
+    flex:1;
+    box-sizing: border-box;
+    align-items: center;
+    width: 100%;
+    margin: 0 auto;
+    align-items: center;
+  }

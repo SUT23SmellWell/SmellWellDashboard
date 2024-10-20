@@ -7,10 +7,9 @@
 
 .monthly-sales {
   display: flex;
-
   flex-direction: column;
   box-sizing: border-box;
-  
+
 }
 
 .widget-background-budget-tracker {
@@ -20,7 +19,7 @@
   box-shadow: 0 4px 20px rgba(238, 238, 238, 0.502);
   padding: 47px 16px;
   overflow: hidden;
-
+  flex-grow: 1;
 }
 
 .widget-header {

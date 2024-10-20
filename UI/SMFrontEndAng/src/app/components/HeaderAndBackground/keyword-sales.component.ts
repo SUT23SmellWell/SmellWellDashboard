@@ -3,11 +3,12 @@ import { OrganicRankingComponent } from "../organic-ranking/organic-ranking.comp
 import { CommonModule } from "@angular/common";
 import { SalesOverviewComponent } from "../SalesOverview/sales-overview/sales-overview.component";
 import { MonthlyBudgetTrackerComponent } from "../monthly-budget-tracker/monthly-budget-tracker.component";
+import { DummiewidgetsComponent } from "../dummiewidgets/dummiewidgets.component";
 
 @Component({
   selector: "app-keyword-sales",
   standalone: true,
-  imports: [OrganicRankingComponent, CommonModule, SalesOverviewComponent, MonthlyBudgetTrackerComponent],
+  imports: [OrganicRankingComponent, CommonModule, SalesOverviewComponent, MonthlyBudgetTrackerComponent, DummiewidgetsComponent],
   templateUrl: "./keyword-sales.component.html",
   styleUrls: ["./keyword-sales.component.css"],
 })

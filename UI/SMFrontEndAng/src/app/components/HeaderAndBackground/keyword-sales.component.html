@@ -39,14 +39,14 @@
 <main class="main-content">
   <div class="general-info-widgets">
     <div class="budget-trackers">
-      <app-monthly-budget-tracker></app-monthly-budget-tracker>
-      <img class="dummiewidget" src="assets/BildPåWidget.jpg" alt="">
+      <app-monthly-budget-tracker class="widget"></app-monthly-budget-tracker>
+      <app-dummiewidgets class="widget"></app-dummiewidgets>
     </div>
     <app-sales-overview></app-sales-overview>
   </div>
   <div class="product-specific-widgets">
   <app-organic-ranking [apiUrl]="currentApiUrl" [productName]="productName" [productVariant]="productCategory"></app-organic-ranking>
-  <app-organic-ranking [apiUrl]="currentApiUrl" [productName]="productName" [productVariant]="productCategory"></app-organic-ranking>
+  <app-dummiewidgets class="widget"></app-dummiewidgets>
 
 </div>
 </main>

@@ -239,3 +239,11 @@
     flex-direction: column; /* Stack items vertically on smaller screens */
   }
 }
+.container {
+  display: flex;
+  gap: 20px; /* Mellanrum mellan widgets */
+}
+
+.widget {
+  flex: 1; /* Gör att varje widget tar upp lika mycket plats */
+}
