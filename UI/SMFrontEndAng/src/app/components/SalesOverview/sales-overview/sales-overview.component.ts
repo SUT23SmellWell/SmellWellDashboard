@@ -31,6 +31,7 @@ export class SalesOverviewComponent {
   show12Months() {
     console.log('Showing 12 months'); // Add this line for debugging
     this.salesChart.displayMonths = 12;
+    this.salesChart.startMonth = 0; // Reset start month to 0 for 12 months
     this.salesChart.loadMonthlyData();
   }
 
@@ -42,6 +43,6 @@ export class SalesOverviewComponent {
     const selectElement = event.target as HTMLSelectElement;
     this.startMonth = parseInt(selectElement.value, 10);
     this.salesChart.startMonth = this.startMonth; // Update the start month in the sales chart
-    this.salesChart.updateChart(); // Update the chart immediately after selecting the start month  }
+    this.salesChart.updateChart(); // Update the chart immediately after selecting the start month
   }
 }
