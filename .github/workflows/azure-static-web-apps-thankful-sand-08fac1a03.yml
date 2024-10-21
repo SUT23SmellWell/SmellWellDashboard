@@ -31,7 +31,7 @@ jobs:
 
       # Bygg Angular-applikationen för produktion
       - name: Build Angular App
-        run: ng build --configuration production --base-href / --deploy-url /
+        run: npm run build --configuration production --base-href / --deploy-url /
 
         working-directory: UI/SMFrontEndAng
 
