@@ -42,5 +42,5 @@ jobs:
         id: closepullrequest
         uses: Azure/static-web-apps-deploy@v1
         with:
-          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_MANGO_ISLAND_0E4F94D03 }}
+          azure_static_web_apps_api_token: ${{ b55d7c045ccb55d6a7b2c7effad596cabd200266142ffa52943c33d6911412a45-ff81009c-719c-46e2-bd9d-313750980cb3003648636 }}
           action: "close"
