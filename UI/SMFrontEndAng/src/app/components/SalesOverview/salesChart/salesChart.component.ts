@@ -30,8 +30,9 @@ export class SalesChartComponent implements OnInit {
   }
 
   loadMonthlyData() {
-    const startIndex = this.displayMonths === 6 ? this.startMonth : this.months.length - this.displayMonths;
-    const promises = this.months.slice(startIndex, startIndex + this.displayMonths).map((_, index) => {
+    const startIndex = this.displayMonths === 6 ? this.startMonth : 0; // Always start from January for 12 months
+    const endIndex = this.displayMonths === 6 ? startIndex + this.displayMonths : this.months.length;
+    const promises = this.months.slice(startIndex, endIndex).map((_, index) => {
       const apiUrl = `https://swgooglesheetsapi.azurewebsites.net/SALESRANKING/${startIndex + index + 1}`;
       return this.http.get<{ totalSales: string, budget: string }>(apiUrl).toPromise()
         .then(data => {
@@ -56,11 +57,14 @@ export class SalesChartComponent implements OnInit {
     });
   }
 
+
   updateChart() {
+
     // Beräkna maxvärden för y-axeln och normalisering
-    const startIndex = this.displayMonths === 6 ? this.startMonth : this.salesData.length - this.displayMonths;
-    const maxSales = Math.max(...this.salesData.slice(startIndex, startIndex + this.displayMonths));
-    const maxGoals = Math.max(...this.goalsData.slice(startIndex, startIndex + this.displayMonths));
+    const startIndex = this.displayMonths === 6 ? this.startMonth : 0; // Always start from January for 12 months
+    const endIndex = this.displayMonths === 6 ? startIndex + this.displayMonths : this.salesData.length;
+    const maxSales = Math.max(...this.salesData.slice(startIndex, endIndex));
+    const maxGoals = Math.max(...this.goalsData.slice(startIndex, endIndex));
     const maxYValue = Math.max(maxSales, maxGoals);
 
     // Sätt y-axelvärdena baserat på ett avrundat maxvärde
@@ -68,8 +72,8 @@ export class SalesChartComponent implements OnInit {
 
     // Normalisera försäljnings- och budgetdata för att matcha y-axeln
     const yAxisMaxValue = Math.max(...this.yAxisValues);
-    this.normalizedSalesData = this.getNormalizedData(this.salesData.slice(startIndex, startIndex + this.displayMonths), yAxisMaxValue);
-    this.normalizedGoalsData = this.getNormalizedData(this.goalsData.slice(startIndex, startIndex + this.displayMonths), yAxisMaxValue);
+    this.normalizedSalesData = this.getNormalizedData(this.salesData.slice(startIndex, endIndex), yAxisMaxValue);
+    this.normalizedGoalsData = this.getNormalizedData(this.goalsData.slice(startIndex, endIndex), yAxisMaxValue);
   }
 
   getNormalizedData(data: number[], maxYValue: number): number[] {
