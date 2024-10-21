@@ -32,28 +32,32 @@
   color: #737791;
   font-family: 'Rajdhani', sans-serif;
   margin: 0;
+  font-size: 34px;
 }
 
 .widget-subtitle {
   display: block;
   font: 400 16px/1.5 'Roboto', sans-serif;
-  font-size: 16px;
+  font-size: 26px;
   font-weight: 400;
 }
 
-.product-info {
+/* .product-info {
   text-align: center;
-}
+} */
 
 .product-name {
-  font: 400 20px/1 Rajdhani, sans-serif;
-  margin: 0 0 7px;
+  font-family: 'Rajdhani', sans-serif;
+  margin: 0 0 7px; /* Sätter marginalen till 0 på sidorna och toppen, och 7px på botten */
+  font-size: 34px; /* Sätter fontstorleken till 34px */
 }
 
 .product-variant {
-  font: 700 20px/1 Roboto, sans-serif;
-  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  margin: 0; /* Sätter marginalen till 0 */
+  font-size: 26px; /* Sätter fontstorleken till 26px */
 }
+
 
 .ranking-table {
   margin: 0 auto;

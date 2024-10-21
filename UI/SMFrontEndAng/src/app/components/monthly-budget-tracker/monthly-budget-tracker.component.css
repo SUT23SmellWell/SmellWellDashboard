@@ -32,15 +32,15 @@
 }
 .widget-title {
   color: #737791; /* Match the color of widget-title */
-  text-align: center;
   font-family: 'Rajdhani', sans-serif; /* Match the font-family of widget-title */
+  font-size: 34px;
 
 }
 
 .widget-subtitle {
   display: block;
   font: 400 16px/1.5 'Roboto', sans-serif;
-  font-size: 16px;
+  font-size: 26px;
   font-weight: 400;
 }
 
