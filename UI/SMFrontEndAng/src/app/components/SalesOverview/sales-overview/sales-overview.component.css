@@ -153,6 +153,16 @@
   border: 1px solid #ccc;
   border-radius: 5px;
 }
+/* Styling for disabled dropdown option */
+option.disabled {
+  color: grey;
+  background-color: #deefbf;
+}
+
+/* Optional hover effect to make it more evident */
+option.disabled:hover {
+  cursor: not-allowed;
+}
 
 @media (max-width: 991px) {
   .sales-overview {
