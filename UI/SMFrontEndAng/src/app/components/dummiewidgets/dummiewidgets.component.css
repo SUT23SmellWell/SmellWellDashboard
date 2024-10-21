@@ -33,6 +33,7 @@
     text-align: center;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     font-family: 'Rajdhani', sans-serif; /* Match the font-family of widget-title */
+    font-size: 34px;
   }
   
   .widget-subtitle {
@@ -41,7 +42,7 @@
     color: #d4d4d4;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     text-align: center;
-    font-size: 16px;
+    font-size: 26px;
     font-weight: 400;
   }
   
