@@ -20,10 +20,14 @@
         />
         <div *ngIf="dropdownVisible" class="dropdown">
           <label for="startMonth">Start Month:</label>
-          <select id="startMonth" (change)="updateStartMonth($event)">
-            <option *ngFor="let month of months; let i = index" [value]="i">{{ month }}</option>
+          <select id="startMonth" (change)="updateStartMonth($event)" [value]="startMonth">
+            <option *ngFor="let month of months; let i = index" [value]="i" [selected]="i === startMonth">
+              {{ month }}
+            </option>
           </select>
         </div>
+        
+        
       </div>
     </header>
     <div class="chart-container">
